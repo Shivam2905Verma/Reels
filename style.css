@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to top left, #000000, #1a1a1a, #2a2a2a);
+  padding: 20px;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 390px;
+  background-color: white;
+  border-radius: 1rem;
+  margin: auto;
+  overflow: hidden;
+  overflow-y: scroll;
+    scroll-snap-type: y mandatory; /* or x for horizontal */
+}
+
+.container::-webkit-scrollbar{
+    display: none;
+}
+
+.videoDiv {
+  position: relative;
+    scroll-snap-align: start; /* or center / end */
+  height: 100%;
+  width: 100%;
+}
+
+
+
+.videoDiv video {
+  height: 100%;
+}
+
+.description {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 20px;
+  width: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(17, 17, 17, 0.993),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.usernameAndFollow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.usernameAndFollow img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.usernameAndFollow button{
+    padding: 2px 10px;
+    color: black;
+    background: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.liked{
+    color: red;
+}
+
+.allBtns{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    padding: 10px;
+    gap: 20px;
+}
+
+.allBtns i{
+   font-size: 1.5rem;
+   cursor: pointer;
+}
