@@ -58,11 +58,21 @@ const posts = [
   },
 ];
 
-let allPosts = "";
+let isMuted = false;
 
-posts.forEach(function (el) {
-  allPosts += `<div class="videoDiv">
-          <video autoplay loop muted src="${el.video}"></video>
+function allData() {
+  let allPosts = "";
+
+  posts.forEach(function (el, idx) {
+    allPosts += `<div class="videoDiv">
+          <div class="sound">
+          ${
+            isMuted
+              ? '<i class="ri-volume-mute-fill"></i>'
+              : '<i class="ri-volume-up-fill"></i>'
+          }
+          </div>
+          <video id='${idx}' autoplay loop muted src="${el.video}"></video>
           <div class="description">
             <div class="usernameAndFollow">
               <img src="${el.image}" alt="" />
@@ -99,9 +109,12 @@ posts.forEach(function (el) {
             </div>
           </div>
         </div>`;
-});
+  });
 
-container.innerHTML = allPosts;
+  container.innerHTML = allPosts;
+}
+
+allData();
 
 let heart = document.querySelectorAll(".heart");
 
@@ -125,9 +138,46 @@ heart.forEach(function (el) {
           post.likes -= 1;
         }
 
-        console.log(this.nextElementSibling.textContent)
+        console.log(this.nextElementSibling.textContent);
         this.nextElementSibling.textContent = post.likes;
       }
     });
+  });
+});
+
+function sound() {
+  const videoDivs = document.querySelectorAll(".videoDiv");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(async (entry) => {
+        const video = entry.target.querySelector("video");
+        if (entry.isIntersecting) {
+          await video.play();
+          video.muted = isMuted;
+        } else {
+          video.pause();
+          video.muted = true;
+        }
+      });
+    },
+    {
+      threshold: 0.7,
+    }
+  );
+
+  videoDivs.forEach((div) => observer.observe(div));
+}
+
+sound();
+
+let soundBtns = document.querySelectorAll(".sound");
+console.log(soundBtns);
+soundBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    console.log("clicked");
+    isMuted = !isMuted;
+    sound();
+    this.innerHTML = isMuted ? '<i class="ri-volume-mute-fill"></i>' : '<i class="ri-volume-up-fill"></i>';
   });
 });

@@ -27,20 +27,38 @@ main {
   margin: auto;
   overflow: hidden;
   overflow-y: scroll;
-    scroll-snap-type: y mandatory; /* or x for horizontal */
+  scroll-snap-type: y mandatory; /* or x for horizontal */
 }
 
-.container::-webkit-scrollbar{
-    display: none;
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .videoDiv {
   position: relative;
-    scroll-snap-align: start; /* or center / end */
+  scroll-snap-align: start; /* or center / end */
   height: 100%;
   width: 100%;
 }
 
+.sound {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  height: 50px;
+    z-index: 1000; 
+  width: 50px;
+  background-color: #2a2a2a;
+  border-radius: 50%;
+  cursor: pointer;   /* 👈 ADD THIS */
+}
+
+.sound i {
+ cursor: pointer;
+}
 
 
 .videoDiv video {
@@ -74,30 +92,30 @@ main {
   object-fit: cover;
 }
 
-.usernameAndFollow button{
-    padding: 2px 10px;
-    color: black;
-    background: white;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
+.usernameAndFollow button {
+  padding: 2px 10px;
+  color: black;
+  background: white;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 
-.liked{
-    color: red;
+.liked {
+  color: red;
 }
 
-.allBtns{
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 20%;
-    right: 0;
-    padding: 10px;
-    gap: 20px;
+.allBtns {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  padding: 10px;
+  gap: 20px;
 }
 
-.allBtns i{
-   font-size: 1.5rem;
-   cursor: pointer;
+.allBtns i {
+  font-size: 1.5rem;
+  cursor: pointer;
 }
